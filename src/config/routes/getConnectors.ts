@@ -6,6 +6,7 @@ import { JupiterConfig } from '../../connectors/jupiter/jupiter.config';
 import { MeteoraConfig } from '../../connectors/meteora/meteora.config';
 import { RaydiumConfig } from '../../connectors/raydium/raydium.config';
 import { UniswapConfig } from '../../connectors/uniswap/uniswap.config';
+import { AerodromeConfig } from '../../connectors/aerodrome/aerodrome.config';
 import { logger } from '../../services/logger';
 
 // Define the schema using Typebox
@@ -69,6 +70,12 @@ export const getConnectorsRoute: FastifyPluginAsync = async (fastify) => {
           trading_types: [...ZeroXConfig.tradingTypes],
           chain: ZeroXConfig.chain,
           networks: [...ZeroXConfig.networks],
+        },
+        {
+          name: 'aerodrome',
+          trading_types: [...AerodromeConfig.tradingTypes],
+          chain: AerodromeConfig.chain,
+          networks: [...AerodromeConfig.networks],
         },
       ];
 

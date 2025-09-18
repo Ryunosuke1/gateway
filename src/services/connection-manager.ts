@@ -69,6 +69,9 @@ export async function getConnector(
   } else if (connector === 'meteora') {
     const { Meteora } = await import('../connectors/meteora/meteora');
     return await Meteora.getInstance(network);
+  } else if (connector === 'aerodrome') {
+    const { Aerodrome } = await import('../connectors/aerodrome/aerodrome');
+    return await Aerodrome.getInstance(network);
   } else {
     throw new Error('unsupported chain or connector');
   }

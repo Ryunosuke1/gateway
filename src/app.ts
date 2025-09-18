@@ -21,6 +21,7 @@ import { jupiterRoutes } from './connectors/jupiter/jupiter.routes';
 import { meteoraRoutes } from './connectors/meteora/meteora.routes';
 import { raydiumRoutes } from './connectors/raydium/raydium.routes';
 import { uniswapRoutes } from './connectors/uniswap/uniswap.routes';
+import { aerodromeRoutes } from './connectors/aerodrome/aerodrome.routes';
 import { getHttpsOptions } from './https';
 import { poolRoutes } from './pools/pools.routes';
 import { ConfigManagerV2 } from './services/config-manager-v2';
@@ -87,6 +88,10 @@ const swaggerOptions = {
       {
         name: '/connector/uniswap',
         description: 'Uniswap connector endpoints',
+      },
+      {
+        name: '/connector/aerodrome',
+        description: 'Aerodrome connector endpoints',
       },
       { name: '/connector/0x', description: '0x connector endpoints' },
     ],
@@ -236,6 +241,13 @@ const configureGatewayServer = () => {
     });
     app.register(uniswapRoutes.amm, { prefix: '/connectors/uniswap/amm' });
     app.register(uniswapRoutes.clmm, { prefix: '/connectors/uniswap/clmm' });
+
+    // Aerodrome routes
+    app.register(aerodromeRoutes.router, {
+      prefix: '/connectors/aerodrome/router',
+    });
+    app.register(aerodromeRoutes.amm, { prefix: '/connectors/aerodrome/amm' });
+    app.register(aerodromeRoutes.clmm, { prefix: '/connectors/aerodrome/clmm' });
 
     // 0x routes
     app.register(register0xRoutes);
